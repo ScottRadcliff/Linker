@@ -30,7 +30,7 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', function(req,res) {
-  res.render('index.jade', {title: "Hreffer"});
+  res.render('index.jade', {title: "Linker"});
 });
     
     // routes.index);
