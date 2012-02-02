@@ -1,0 +1,5 @@
+node_modules
+
+# Ignore all vim swap files
+*.sw*
+**/.swp
