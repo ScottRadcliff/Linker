@@ -1,10 +1,10 @@
-
 /**
  * Module dependencies.
  */
 
 var express = require('express')
   , routes = require('./routes')
+  , twitter = require('ntwitter')
 
 var app = module.exports = express.createServer();
 
@@ -30,7 +30,12 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', function(req,res) {
-  res.render('index.jade', {title: "Linker"});
+twit.stream('statuses/scottradcliff', function(stream) {
+      stream.on('data', function (data) {
+        console.log(data);
+      });
+    });
+  // res.render('index.jade', {title: "Linker"});
 });
     
     // routes.index);
@@ -38,3 +43,19 @@ var port = process.env.PORT || 3000;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
+
+
+// Twitter
+var twit = new twitter({
+        consumer_key: 'Twitter',
+        consumer_secret: 'API',
+        access_token_key: '15789234-u1j8uYi9ZxXMb5KYIefDgcJplcmRuzxjaynG6QcDX',
+        access_token_secret: 'jewifpNt2RfLR70dhD4tasw71orpxb41PTdaCosBw'
+      });
+
+twit.search('nodejs OR #node', function(err, data) {
+    console.log(data);
+  });
+
+
+
